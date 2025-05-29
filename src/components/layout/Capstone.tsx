@@ -1,0 +1,179 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Target, Cog, BarChart3, Lightbulb, ExternalLink, Github } from "lucide-react";
+
+const Capstone = () => {
+  const sections = [
+    {
+      id: "problem",
+      title: "Problem Statement",
+      icon: Target,
+      content: "Identifying and addressing critical cybersecurity vulnerabilities through advanced analytics and machine learning techniques to enhance organizational security posture."
+    },
+    {
+      id: "process",
+      title: "Methodology & Process",
+      icon: Cog,
+      content: "Implemented a comprehensive approach utilizing NIST frameworks, statistical analysis, and machine learning algorithms to analyze security data and identify threat patterns."
+    },
+    {
+      id: "results",
+      title: "Results & Impact",
+      icon: BarChart3,
+      content: "Achieved significant improvements in threat detection accuracy and response times, resulting in enhanced security operations and reduced risk exposure."
+    },
+    {
+      id: "reflections",
+      title: "Key Insights",
+      icon: Lightbulb,
+      content: "Gained valuable insights into the intersection of data science and cybersecurity, highlighting the importance of data-driven decision making in security operations."
+    }
+  ];
+
+  const technologies = [
+    "Python", "Splunk", "NIST Framework", "Machine Learning", "Statistical Analysis", 
+    "Threat Intelligence", "Data Visualization", "Risk Assessment", "Incident Response"
+  ];
+
+  return (
+    <section id="capstone" className="py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+              Capstone Project
+            </span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Cybersecurity Analytics & Operations: A comprehensive study in threat detection, 
+            risk assessment, and security framework implementation.
+          </p>
+        </motion.div>
+
+        {/* Project Overview */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16 p-8 bg-gradient-to-r from-neon-blue/5 to-neon-purple/5 border border-neon-blue/20 rounded-xl"
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-4">Project Overview</h3>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            This capstone project demonstrates the application of advanced analytics and machine learning 
+            techniques to cybersecurity challenges. The project encompasses threat detection, risk assessment, 
+            and the implementation of NIST cybersecurity frameworks to enhance organizational security posture.
+          </p>
+          
+          {/* Technologies Used */}
+          <div className="mb-6">
+            <h4 className="text-lg font-semibold text-foreground mb-3">Technologies & Frameworks</h4>
+            <div className="flex flex-wrap gap-2">
+              {technologies.map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-card text-card-foreground text-sm rounded-full border border-border hover:border-neon-blue/50 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-semibold rounded-lg glow-effect transition-all duration-300 flex items-center gap-2"
+            >
+              <ExternalLink className="w-4 h-4" />
+              View Live Demo
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-card transition-all duration-300 flex items-center gap-2"
+            >
+              <Github className="w-4 h-4" />
+              View Source Code
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Project Sections */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {sections.map((section, index) => (
+            <motion.div
+              key={section.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="p-6 bg-card border border-border rounded-xl hover:border-neon-blue/50 transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg">
+                  <section.icon className="w-6 h-6 text-background" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">{section.title}</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">{section.content}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Interactive Data Visualization Placeholder */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-16 p-8 bg-card border border-border rounded-xl"
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+            Interactive Data Visualizations
+          </h3>
+          <div className="bg-muted/50 border-2 border-dashed border-border rounded-lg p-12 text-center">
+            <BarChart3 className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground">
+              Interactive charts and visualizations will be integrated here to showcase 
+              data analysis results, threat patterns, and security metrics.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-4">Interested in Learning More?</h3>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            I&apos;d be happy to discuss the technical details, methodologies, and insights 
+            gained from this cybersecurity analytics project.
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-semibold rounded-lg glow-effect transition-all duration-300"
+          >
+            Contact Me
+          </motion.button>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default Capstone; 

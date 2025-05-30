@@ -30,13 +30,13 @@ const About = () => {
   const achievements = [
     {
       icon: Award,
-      title: "Cybersecurity Analytics Certification",
-      description: "Advanced certification in cybersecurity data analysis and threat detection"
+      title: "Certified Information Systems Security Professional",
+      description: "ISC2"
     },
     {
       icon: Users,
       title: "Team Leadership",
-      description: "Led cross-functional teams in implementing security frameworks and protocols"
+      description: "Led cross-functional teams in implementing security frameworks, protocols, and best practices"
     }
   ];
 

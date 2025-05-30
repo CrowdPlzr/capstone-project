@@ -8,19 +8,19 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "brantley@example.com",
-      href: "mailto:brantley@example.com"
+      value: "brantleyp@gmail.com",
+      href: "mailto:brantleyp@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "Upon Request",
       href: "tel:+15551234567"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Available for Remote Work",
+      value: "Open To Work",
       href: null
     }
   ];

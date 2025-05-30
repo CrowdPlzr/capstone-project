@@ -53,7 +53,7 @@ const Navigation = () => {
           >
             <div className="relative">
               <Image
-                src="https://i.imgur.com/HOACFUO.jpg"
+                src="/logo.jpg"
                 alt="Brantley Price Logo"
                 width={160}
                 height={54}

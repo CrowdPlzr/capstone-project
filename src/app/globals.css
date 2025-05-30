@@ -1,8 +1,6 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@300;400;500&display=swap');
 
 :root {
-  /* Dark theme colors - cybersecurity inspired */
   --background: #0a0a0a;
   --foreground: #ededed;
   --card: #1a1a1a;
@@ -18,16 +16,33 @@
   --border: #404040;
   --input: #262626;
   --ring: #00d4ff;
-  
-  /* Neon accents for cybersecurity theme */
   --neon-blue: #00d4ff;
   --neon-purple: #8b5cf6;
   --neon-green: #10b981;
   --cyber-red: #ef4444;
-  
-  /* Grid and glow effects */
-  --grid-color: rgba(0, 212, 255, 0.1);
-  --glow-color: rgba(0, 212, 255, 0.3);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --card-foreground: #1e293b;
+  --primary: #0284c7;
+  --primary-foreground: #f8fafc;
+  --secondary: #7c3aed;
+  --secondary-foreground: #f8fafc;
+  --accent: #059669;
+  --accent-foreground: #f8fafc;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #f1f5f9;
+  --ring: #0284c7;
+  --neon-blue: #0284c7;
+  --neon-purple: #7c3aed;
+  --neon-green: #059669;
+  --cyber-red: #dc2626;
 }
 
 @theme inline {
@@ -46,36 +61,13 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  
-  /* Custom cybersecurity colors */
   --color-neon-blue: var(--neon-blue);
   --color-neon-purple: var(--neon-purple);
   --color-neon-green: var(--neon-green);
   --color-cyber-red: var(--cyber-red);
-  
-  /* Typography */
-  --font-sans: 'Inter', var(--font-geist-sans), system-ui, sans-serif;
-  --font-heading: 'DM Sans', var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: 'Fira Code', var(--font-geist-mono), monospace;
-}
-
-/* Light mode override (optional toggle) */
-[data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #f8f9fa;
-  --card-foreground: #171717;
-  --primary: #0066cc;
-  --primary-foreground: #ffffff;
-  --secondary: #6366f1;
-  --secondary-foreground: #ffffff;
-  --accent: #059669;
-  --accent-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  --input: #f1f5f9;
-  --ring: #0066cc;
+  --font-sans: system-ui, sans-serif;
+  --font-heading: system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 }
 
 * {
@@ -91,7 +83,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cybersecurity grid background effect */
 .cyber-grid {
   background-image: 
     linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
@@ -99,7 +90,6 @@ body {
   background-size: 50px 50px;
 }
 
-/* Glow effects for interactive elements */
 .glow-effect {
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
   transition: box-shadow 0.3s ease;
@@ -109,12 +99,10 @@ body {
   box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -132,14 +120,12 @@ html {
   background: var(--neon-blue);
 }
 
-/* Selection styling */
 ::selection {
   background: var(--primary);
   color: var(--primary-foreground);
 }
 
-/* Focus styles for accessibility */
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
-}
+} 

@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Shield } from "lucide-react";
+import ThemeToggle from "../ui/ThemeToggle";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,17 +19,17 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { id: "home", label: "Home", href: "#home" },
-    { id: "about", label: "About", href: "#about" },
-    { id: "capstone", label: "Capstone", href: "#capstone" },
-    { id: "contact", label: "Contact", href: "#contact" },
+    "Home",
+    "About",
+    "Capstone",
+    "Contact",
   ];
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionName: string) => {
+    const sectionId = sectionName.toLowerCase();
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(sectionId);
     }
   };
 
@@ -48,59 +50,78 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-2"
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
-              <span className="text-background font-bold text-sm">BP</span>
+            <div className="relative">
+              <Shield className="w-8 h-8 text-neon-blue" />
+              <div className="absolute inset-0 bg-neon-blue/20 blur-md rounded-full" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
               Brantley Price
             </span>
           </motion.div>
 
-          {/* Navigation Links */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                  activeSection === item.id
-                    ? "text-neon-blue"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+              <motion.a
+                key={item}
+                whileHover={{ y: -2 }}
+                onClick={() => scrollToSection(item)}
+                className="cursor-pointer text-foreground hover:text-neon-blue transition-colors duration-200 relative group"
               >
-                {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-neon-blue"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </button>
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple group-hover:w-full transition-all duration-300" />
+              </motion.a>
             ))}
+            <ThemeToggle />
           </div>
 
-          {/* CTA Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection("contact")}
-            className="hidden md:block px-6 py-2 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-medium rounded-lg glow-effect transition-all duration-300"
-          >
-            Get In Touch
-          </motion.button>
-
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button className="text-foreground hover:text-neon-blue transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+          <div className="md:hidden flex items-center space-x-4">
+            <ThemeToggle />
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg bg-card border border-border hover:border-neon-blue/50 transition-colors"
+            >
+              {isOpen ? (
+                <X className="w-6 h-6 text-foreground" />
+              ) : (
+                <Menu className="w-6 h-6 text-foreground" />
+              )}
+            </motion.button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border"
+          >
+            <div className="px-4 py-4 space-y-4">
+              {navItems.map((item, index) => (
+                <motion.a
+                  key={item}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => {
+                    scrollToSection(item);
+                    setIsOpen(false);
+                  }}
+                  className="block cursor-pointer text-foreground hover:text-neon-blue transition-colors duration-200"
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

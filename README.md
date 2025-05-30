@@ -1,167 +1,139 @@
-# Brantley Price | Cybersecurity Analytics & Operations Portfolio
+# 🛡️ Cybersecurity Analytics & Operations Portfolio
 
-A modern, dark-themed portfolio website showcasing cybersecurity analytics expertise, built with Next.js 15, TypeScript, and Tailwind CSS.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_SITE_ID/deploy-status.svg)](https://app.netlify.com/sites/YOUR_SITE_NAME/deploys)
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.3-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 
-## 🚀 Features
+**Professional cybersecurity portfolio showcasing analytics expertise, capstone project, and technical skills.**
 
-### Design & UI/UX
-- **Dark Mode First**: Cybersecurity-inspired dark theme with neon accents
-- **Responsive Design**: Fully responsive across desktop, tablet, and mobile
-- **Smooth Animations**: Framer Motion animations for enhanced user experience
-- **Behance-Style Layout**: Clean grid layout with card-based design
-- **Cybersecurity Aesthetics**: Grid backgrounds, glow effects, and neon color scheme
+## 🚀 Live Demo
 
-### Content Sections
-- **Hero Section**: Professional introduction with animated text and CTAs
-- **About Me**: Skills showcase, professional background, and achievements
-- **Capstone Project**: Detailed project breakdown with interactive elements
-- **Contact Form**: Professional contact form with validation
-- **Navigation**: Sticky navigation with smooth scrolling
+🌐 **[View Live Portfolio](https://YOUR_NETLIFY_URL.netlify.app)**
 
-### Technical Features
-- **Next.js 15**: Latest Next.js with App Router
-- **TypeScript**: Full type safety
-- **Tailwind CSS v4**: Modern utility-first CSS framework
-- **Framer Motion**: Smooth animations and transitions
-- **Lucide React**: Beautiful, consistent icons
-- **SEO Optimized**: Proper meta tags and Open Graph support
+*Deploy your own copy in under 2 minutes:*
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=YOUR_GITHUB_REPO_URL)
+
+## ✨ Features
+
+### 🎨 Design & UX
+- **Dark/Light Theme Toggle** with smooth animations
+- **Cybersecurity-inspired** color palette (neon blue, purple, green)
+- **Responsive Design** - Perfect on all devices
+- **Smooth Scrolling** navigation with hover effects
+- **Framer Motion** animations throughout
+
+### 🛡️ Security & Performance
+- **Security Headers** - XSS protection, content security
+- **Static Generation** - Ultra-fast loading
+- **SEO Optimized** - Meta tags and structured data
+- **HTTPS Ready** - Automatic SSL via Netlify
+- **CDN Distribution** - Global edge network
+
+### 📊 Sections
+- **Hero** - Professional introduction with animated gradient text
+- **About** - Skills categorized by expertise area
+- **Capstone** - Detailed project showcase with methodology
+- **Contact** - Professional contact form and information
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15.3.3
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Fonts**: Inter, DM Sans, Fira Code (Google Fonts)
+- **Framework**: Next.js 15.3.3 with App Router
+- **Language**: TypeScript 5.0
+- **Styling**: Tailwind CSS v4 with custom cybersecurity theme
+- **Animations**: Framer Motion for smooth interactions
+- **Icons**: Lucide React icon library
+- **Deployment**: Netlify with automatic deployments
+- **Performance**: Static generation, image optimization
 
-## 🎨 Design System
+## 🚀 Quick Start
 
-### Color Palette
-- **Primary**: Neon Blue (#00d4ff)
-- **Secondary**: Neon Purple (#8b5cf6)
-- **Accent**: Neon Green (#10b981)
-- **Background**: Dark (#0a0a0a)
-- **Cards**: Dark Gray (#1a1a1a)
+### Development
 
-### Typography
-- **Headings**: DM Sans
-- **Body**: Inter
-- **Code**: Fira Code
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
 ```bash
-git clone <repository-url>
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/capstone-project.git
 cd capstone-project
-```
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-3. Start the development server:
-```bash
+# Start development server
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit `http://localhost:3000` to see the portfolio.
 
-### Available Scripts
+### Production Build
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+```bash
+# Create production build
+npm run build
 
-## 📁 Project Structure
-
-```
-src/
-├── app/
-│   ├── globals.css          # Global styles and Tailwind configuration
-│   ├── layout.tsx           # Root layout with metadata
-│   └── page.tsx             # Main page component
-└── components/
-    └── layout/
-        ├── Navigation.tsx   # Sticky navigation component
-        ├── Hero.tsx         # Hero section with animations
-        ├── About.tsx        # About section with skills
-        ├── Capstone.tsx     # Capstone project showcase
-        └── Contact.tsx      # Contact form and information
+# Test production build locally
+npm start
 ```
 
-## 🎯 Sprint 1 Deliverables ✅
+## 📦 Deployment
 
-### Phase 0 - Setup
-- [x] Next.js project with TypeScript and Tailwind CSS
-- [x] Project structure with components folders
-- [x] ESLint and Prettier configuration
+This portfolio is optimized for **Netlify** deployment with:
 
-### Sprint 1 - Skeleton Build & Core Layout
-- [x] Dark theme implementation with cybersecurity colors
-- [x] Custom fonts integration (Inter, DM Sans, Fira Code)
-- [x] Hero section with animated text and CTAs
-- [x] Sticky navigation with smooth scrolling
-- [x] Basic page structure for all sections
-- [x] Responsive grid foundation
-- [x] Cybersecurity grid background effect
-- [x] Glow effects for interactive elements
+- ✅ `netlify.toml` configuration
+- ✅ Next.js optimization
+- ✅ Security headers
+- ✅ Caching strategies
+- ✅ Build optimization
 
-## 🔮 Next Steps (Sprint 2)
+**See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.**
 
-- [ ] Content integration for About and Capstone sections
-- [ ] Behance-style card components
-- [ ] Assignment gallery implementation
-- [ ] Resume download functionality
-- [ ] Enhanced hover effects and animations
-- [ ] Mobile menu implementation
+## 🎯 Customization
 
-## 🎨 Design Inspiration
+### Colors & Theme
+Edit `src/app/globals.css` to customize:
+- Color palette
+- Dark/light theme variables
+- Cybersecurity effects
 
-- **Behance**: Clean portfolio layouts and project showcases
-- **Cybersecurity Aesthetics**: Dark themes with neon accents
-- **Modern Web Design**: Smooth animations and micro-interactions
+### Content
+Update content in:
+- `src/components/sections/Hero.tsx` - Introduction
+- `src/components/sections/About.tsx` - Skills & background
+- `src/components/sections/Capstone.tsx` - Project details
+- `src/components/sections/Contact.tsx` - Contact information
 
-## 📱 Responsive Breakpoints
+### Layout
+Modify components in `src/components/layout/`:
+- `Navigation.tsx` - Header navigation
+- `Footer.tsx` - Site footer
 
-- **Mobile**: 320px - 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: 1024px+
+## 📱 Browser Support
 
-## 🔧 Customization
+- ✅ Chrome (latest)
+- ✅ Firefox (latest)
+- ✅ Safari (latest)
+- ✅ Edge (latest)
+- ✅ Mobile browsers
 
-The design system is built with CSS custom properties, making it easy to customize:
+## 🔄 Updates & Maintenance
 
-```css
-:root {
-  --neon-blue: #00d4ff;
-  --neon-purple: #8b5cf6;
-  --neon-green: #10b981;
-  /* ... other variables */
-}
-```
-
-## 📄 License
-
-This project is for portfolio purposes. All rights reserved.
-
-## 👤 Author
-
-**Brantley Price**
-- Cybersecurity Analytics & Operations
-- Email: brantley@example.com
-- LinkedIn: [linkedin.com/in/brantley-price](https://linkedin.com/in/brantley-price)
-- GitHub: [github.com/brantley-price](https://github.com/brantley-price)
+The portfolio includes:
+- **Automatic deployments** via Git integration
+- **Preview deployments** for testing changes
+- **Rollback capability** to previous versions
+- **Build notifications** via email/Slack
 
 ---
 
-Built with ❤️ and ☕ for the cybersecurity community.
+## 📞 Contact
+
+**Brantley Price**  
+Cybersecurity Analytics & Operations Professional
+
+- 📧 Email: your.email@example.com
+- 💼 LinkedIn: [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
+- 🐙 GitHub: [github.com/your-username](https://github.com/your-username)
+
+---
+
+*Built with ❤️ using Next.js, TypeScript, and modern web technologies*

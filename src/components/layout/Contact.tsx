@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Linkedin, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Linkedin, Github, Award } from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
@@ -37,6 +37,12 @@ const Contact = () => {
       label: "GitHub",
       href: "https://github.com/brantley-price",
       color: "hover:text-gray-400"
+    },
+    {
+      icon: Award,
+      label: "Credly Certifications",
+      href: "https://www.credly.com/users/brantley-price.56d860fc",
+      color: "hover:text-neon-green"
     },
     {
       icon: Mail,

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Download, Mail, Github, Linkedin } from "lucide-react";
+import { ChevronDown, Download, Mail, Github, Linkedin, Award } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -93,7 +93,7 @@ const Hero = () => {
           >
             <motion.a
               whileHover={{ scale: 1.1, y: -2 }}
-              href="mailto:brantley@example.com"
+              href="mailto:brantleyp@gmail.com"
               className="p-3 bg-card border border-border rounded-lg hover:border-neon-blue transition-all duration-300 group"
             >
               <Mail className="w-5 h-5 text-muted-foreground group-hover:text-neon-blue transition-colors" />
@@ -115,6 +115,16 @@ const Hero = () => {
               className="p-3 bg-card border border-border rounded-lg hover:border-neon-blue transition-all duration-300 group"
             >
               <Github className="w-5 h-5 text-muted-foreground group-hover:text-neon-blue transition-colors" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              href="https://www.credly.com/users/brantley-price.56d860fc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-card border border-border rounded-lg hover:border-neon-green transition-all duration-300 group"
+              aria-label="View Credly Certifications"
+            >
+              <Award className="w-5 h-5 text-muted-foreground group-hover:text-neon-green transition-colors" />
             </motion.a>
           </motion.div>
 

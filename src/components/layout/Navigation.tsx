@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Shield } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import ThemeToggle from "../ui/ThemeToggle";
 
 const Navigation = () => {
@@ -51,12 +52,16 @@ const Navigation = () => {
             className="flex items-center space-x-2"
           >
             <div className="relative">
-              <Shield className="w-8 h-8 text-neon-blue" />
-              <div className="absolute inset-0 bg-neon-blue/20 blur-md rounded-full" />
+              <Image
+                src="https://i.imgur.com/HOACFUO.jpg"
+                alt="Brantley Price Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto rounded-lg object-contain"
+                priority
+              />
+              <div className="absolute inset-0 bg-neon-blue/5 blur-sm rounded-lg" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
-              Brantley Price
-            </span>
           </motion.div>
 
           {/* Desktop Menu */}

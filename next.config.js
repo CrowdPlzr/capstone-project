@@ -4,6 +4,15 @@ const nextConfig = {
   trailingSlash: false,
   images: {
     unoptimized: true,
+    domains: ['i.imgur.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   eslint: {
     ignoreDuringBuilds: false,

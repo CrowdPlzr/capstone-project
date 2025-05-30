@@ -55,9 +55,9 @@ const Navigation = () => {
               <Image
                 src="https://i.imgur.com/HOACFUO.jpg"
                 alt="Brantley Price Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto rounded-lg object-contain"
+                width={160}
+                height={54}
+                className="h-14 w-auto rounded-lg object-contain"
                 priority
               />
               <div className="absolute inset-0 bg-neon-blue/5 blur-sm rounded-lg" />

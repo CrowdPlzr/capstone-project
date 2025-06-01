@@ -30,13 +30,13 @@ const About = () => {
   const achievements = [
     {
       icon: Award,
-      title: "Cybersecurity Analytics Certification",
-      description: "Advanced certification in cybersecurity data analysis and threat detection"
+      title: "Certified Information Systems Security Professional",
+      description: "ISC2"
     },
     {
       icon: Users,
       title: "Team Leadership",
-      description: "Led cross-functional teams in implementing security frameworks and protocols"
+      description: "Led cross-functional teams in implementing security frameworks, protocols, and best practices"
     }
   ];
 
@@ -75,11 +75,6 @@ const About = () => {
               With a strong foundation in cybersecurity analytics and operations, I specialize in developing 
               comprehensive security strategies that leverage advanced data analysis techniques. My experience 
               spans across threat intelligence, risk assessment, and the implementation of NIST frameworks.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              I am particularly passionate about using machine learning and statistical analysis to identify 
-              patterns in security data, enabling proactive threat detection and response strategies. My work 
-              focuses on bridging the gap between technical security implementations and business objectives.
             </p>
             
             {/* Achievements */}
@@ -145,30 +140,6 @@ const About = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="p-8 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/20 rounded-xl">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Ready to Collaborate?</h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              I&apos;m always interested in discussing cybersecurity challenges, data analytics projects, 
-              and opportunities to contribute to innovative security solutions.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-semibold rounded-lg glow-effect transition-all duration-300"
-            >
-              Download Resume
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

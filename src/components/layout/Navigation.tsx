@@ -22,7 +22,6 @@ const Navigation = () => {
   const navItems = [
     "Home",
     "About",
-    "Documents",
     "Capstone",
     "Contact",
   ];

@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Upload, File, X, CheckCircle, AlertCircle, Download, Trash2 } from 'lucide-react';
+import { Upload, File, X, CheckCircle, AlertCircle } from 'lucide-react';
 import { DocumentUploadService, DocumentMetadata } from '../lib/uploadService';
 
 interface DocumentUploadProps {
@@ -39,24 +39,7 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({ onUploadSuccess, onErro
     setIsDragging(false);
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    
-    const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) {
-      handleFileSelection(files[0]);
-    }
-  }, []);
-
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      handleFileSelection(files[0]);
-    }
-  };
-
-  const handleFileSelection = (file: File) => {
+  const handleFileSelection = useCallback((file: File) => {
     const validation = DocumentUploadService.validateFile(file);
     if (!validation.isValid) {
       setUploadStatus('error');
@@ -68,6 +51,23 @@ const DocumentUpload: React.FC<DocumentUploadProps> = ({ onUploadSuccess, onErro
     setSelectedFile(file);
     setUploadStatus('idle');
     setStatusMessage('');
+  }, [onError]);
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    
+    const files = Array.from(e.dataTransfer.files);
+    if (files.length > 0) {
+      handleFileSelection(files[0]);
+    }
+  }, [handleFileSelection]);
+
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      handleFileSelection(files[0]);
+    }
   };
 
   const handleUpload = async () => {

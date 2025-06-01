@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Target, Cog, BarChart3, Lightbulb, ExternalLink, Github } from "lucide-react";
 
 const Capstone = () => {
@@ -89,14 +90,16 @@ const Capstone = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-semibold rounded-lg glow-effect transition-all duration-300 flex items-center gap-2"
-            >
-              <ExternalLink className="w-4 h-4" />
-              View Live Demo
-            </motion.button>
+            <Link href="/capstone">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-semibold rounded-lg glow-effect transition-all duration-300 flex items-center gap-2"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Enter Capstone
+              </motion.button>
+            </Link>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

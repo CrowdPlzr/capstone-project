@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { File, Download, Trash2, Calendar, Folder, FileText, AlertCircle } from 'lucide-react';
+import { Download, Trash2, Calendar, Folder, FileText, AlertCircle } from 'lucide-react';
 import { DocumentUploadService, DocumentMetadata } from '../lib/uploadService';
 
 interface DocumentListProps {

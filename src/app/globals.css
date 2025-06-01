@@ -31,9 +31,9 @@
   --chart-5: 27 87% 67%;
 
   /* Neon Colors */
-  --neon-blue: 199 89% 48%;
-  --neon-purple: 280 100% 70%;
-  --neon-green: 142 76% 36%;
+  --neon-blue: #0284c7;
+  --neon-purple: #7c3aed;
+  --neon-green: #059669;
 }
 
 /* Dark Theme */
@@ -60,9 +60,9 @@
   --ring: 212.7 26.8% 83.9%;
 
   /* Enhanced Neon Colors for Dark Mode */
-  --neon-blue: 199 89% 48%;
-  --neon-purple: 280 100% 70%;
-  --neon-green: 142 76% 36%;
+  --neon-blue: #0284c7;
+  --neon-purple: #7c3aed;
+  --neon-green: #059669;
   --cyber-red: 0 84% 60%;
 }
 

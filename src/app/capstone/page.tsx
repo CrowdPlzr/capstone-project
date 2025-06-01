@@ -2,22 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, FileText, Upload, Plus, Calendar, Folder, ExternalLink } from "lucide-react";
+import { ArrowLeft, FileText, Calendar, Folder, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { DocumentUploadService, DocumentMetadata } from "@/lib/uploadService";
+
+interface GoogleDriveFile {
+  id: string;
+  name: string;
+  mimeType: string;
+  size?: string;
+  modifiedTime: string;
+  webViewLink: string;
+  webContentLink?: string;
+  description?: string;
+}
 
 const CapstonePage = () => {
-  const [assignments, setAssignments] = useState<DocumentMetadata[]>([]);
+  const [assignments, setAssignments] = useState<GoogleDriveFile[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showUpload, setShowUpload] = useState(false);
-  
-  // Upload form state
-  const [uploadFile, setUploadFile] = useState<File | null>(null);
-  const [uploadTitle, setUploadTitle] = useState('');
-  const [uploadCategory, setUploadCategory] = useState('');
-  const [uploadDescription, setUploadDescription] = useState('');
-  const [uploading, setUploading] = useState(false);
-  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     loadAssignments();
@@ -26,105 +28,59 @@ const CapstonePage = () => {
   const loadAssignments = async () => {
     try {
       setLoading(true);
-      const docs = await DocumentUploadService.getDocuments();
-      setAssignments(docs.sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()));
+      setError(null);
+      const response = await fetch('/api/drive/files');
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch assignments');
+      }
+      
+      const files = await response.json();
+      setAssignments(files);
     } catch (error) {
       console.error('Error loading assignments:', error);
+      setError('Failed to load assignments. Please check your Google Drive configuration.');
     } finally {
       setLoading(false);
     }
   };
 
-  const formatDate = (date: Date): string => {
+  const formatDate = (dateString: string): string => {
     return new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
-    }).format(date);
+    }).format(new Date(dateString));
   };
 
-  const getCategoryColor = (category?: string) => {
-    if (!category) return 'bg-gray-500/10 text-gray-500';
-    
+  const getFileIcon = (mimeType: string) => {
+    if (mimeType.includes('document')) return '📄';
+    if (mimeType.includes('spreadsheet')) return '📊';
+    if (mimeType.includes('presentation')) return '📽️';
+    if (mimeType.includes('pdf')) return '🗎';
+    if (mimeType.includes('image')) return '🖼️';
+    return '📎';
+  };
+
+  const getCategoryFromMimeType = (mimeType: string) => {
+    if (mimeType.includes('document')) return 'Document';
+    if (mimeType.includes('spreadsheet')) return 'Spreadsheet';
+    if (mimeType.includes('presentation')) return 'Presentation';
+    if (mimeType.includes('pdf')) return 'PDF';
+    if (mimeType.includes('image')) return 'Image';
+    return 'File';
+  };
+
+  const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
-      'Resume/CV': 'bg-blue-500/10 text-blue-500',
-      'Certifications': 'bg-green-500/10 text-green-500',
-      'Projects': 'bg-purple-500/10 text-purple-500',
-      'Research': 'bg-orange-500/10 text-orange-500',
-      'Portfolio': 'bg-pink-500/10 text-pink-500',
-      'Other': 'bg-gray-500/10 text-gray-500'
+      'Document': 'bg-blue-500/10 text-blue-500',
+      'Spreadsheet': 'bg-green-500/10 text-green-500',
+      'Presentation': 'bg-purple-500/10 text-purple-500',
+      'PDF': 'bg-red-500/10 text-red-500',
+      'Image': 'bg-pink-500/10 text-pink-500',
+      'File': 'bg-gray-500/10 text-gray-500'
     };
-
     return colors[category] || 'bg-gray-500/10 text-gray-500';
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setUploadFile(file);
-      // Auto-populate title from filename if empty
-      if (!uploadTitle) {
-        const nameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
-        setUploadTitle(nameWithoutExtension);
-      }
-      setUploadError(null);
-    }
-  };
-
-  const handleUpload = async () => {
-    if (!uploadFile) {
-      setUploadError('Please select a file to upload');
-      return;
-    }
-
-    if (!uploadTitle.trim()) {
-      setUploadError('Please enter an assignment title');
-      return;
-    }
-
-    try {
-      setUploading(true);
-      setUploadError(null);
-
-      const uploadedDocument = await DocumentUploadService.uploadDocument(
-        uploadFile,
-        uploadCategory || undefined,
-        uploadDescription || undefined
-      );
-
-      // Update the assignments list
-      setAssignments(prev => [uploadedDocument, ...prev]);
-      
-      // Reset form
-      setUploadFile(null);
-      setUploadTitle('');
-      setUploadCategory('');
-      setUploadDescription('');
-      setShowUpload(false);
-
-      // Reset file input
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-      if (fileInput) fileInput.value = '';
-
-    } catch (error) {
-      console.error('Upload error:', error);
-      setUploadError('Failed to upload assignment. Please try again.');
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  const cancelUpload = () => {
-    setUploadFile(null);
-    setUploadTitle('');
-    setUploadCategory('');
-    setUploadDescription('');
-    setUploadError(null);
-    setShowUpload(false);
-    
-    // Reset file input
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    if (fileInput) fileInput.value = '';
   };
 
   return (
@@ -147,15 +103,7 @@ const CapstonePage = () => {
               Capstone Project Hub
             </h1>
             
-            <motion.button
-              onClick={() => setShowUpload(!showUpload)}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-blue to-neon-purple text-background rounded-lg hover:shadow-lg transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Plus className="w-4 h-4" />
-              Add Assignment
-            </motion.button>
+            <div className="w-32" /> {/* Spacer for balance */}
           </div>
         </div>
       </motion.header>
@@ -187,134 +135,13 @@ const CapstonePage = () => {
                 <span>{assignments.length} Assignment{assignments.length !== 1 ? 's' : ''}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Upload className="w-5 h-5 text-neon-purple" />
-                <span>Interactive Content</span>
+                <Folder className="w-5 h-5 text-neon-purple" />
+                <span>Google Drive Integration</span>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
-
-      {/* Upload Section */}
-      {showUpload && (
-        <motion.section
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="py-8 bg-card/30 border-y border-border"
-        >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-bold text-foreground mb-4">Upload New Assignment</h3>
-              <p className="text-muted-foreground mb-6">
-                Upload a new capstone assignment document. Each upload will create a dedicated page for that assignment.
-              </p>
-              
-              {uploadError && (
-                <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-500 text-sm">
-                  {uploadError}
-                </div>
-              )}
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Assignment Document
-                  </label>
-                  <input
-                    type="file"
-                    accept=".pdf,.doc,.docx,.txt"
-                    onChange={handleFileSelect}
-                    className="w-full p-3 border border-border rounded-lg bg-background file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-muted file:text-foreground hover:file:bg-muted/80"
-                  />
-                  {uploadFile && (
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      Selected: {uploadFile.name}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Assignment Title *
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Assignment Title"
-                      value={uploadTitle}
-                      onChange={(e) => setUploadTitle(e.target.value)}
-                      className="w-full p-3 border border-border rounded-lg bg-background focus:ring-2 focus:ring-neon-blue focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Category
-                    </label>
-                    <select 
-                      value={uploadCategory}
-                      onChange={(e) => setUploadCategory(e.target.value)}
-                      className="p-3 border border-border rounded-lg bg-background focus:ring-2 focus:ring-neon-blue focus:border-transparent"
-                    >
-                      <option value="">Select Category</option>
-                      <option value="Analysis">Security Analysis</option>
-                      <option value="Framework">Framework Implementation</option>
-                      <option value="Research">Research Project</option>
-                      <option value="Case Study">Case Study</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Assignment Description
-                  </label>
-                  <textarea
-                    placeholder="Describe this assignment, its objectives, methodology, and key findings..."
-                    rows={3}
-                    value={uploadDescription}
-                    onChange={(e) => setUploadDescription(e.target.value)}
-                    className="w-full p-3 border border-border rounded-lg bg-background resize-none focus:ring-2 focus:ring-neon-blue focus:border-transparent"
-                  />
-                </div>
-
-                <div className="flex gap-4">
-                  <motion.button
-                    onClick={handleUpload}
-                    disabled={uploading || !uploadFile || !uploadTitle.trim()}
-                    className={`px-6 py-3 rounded-lg transition-all flex items-center gap-2 ${
-                      uploading || !uploadFile || !uploadTitle.trim()
-                        ? 'bg-muted text-muted-foreground cursor-not-allowed'
-                        : 'bg-gradient-to-r from-neon-blue to-neon-purple text-background hover:shadow-lg'
-                    }`}
-                    whileHover={uploading || !uploadFile || !uploadTitle.trim() ? {} : { scale: 1.05 }}
-                    whileTap={uploading || !uploadFile || !uploadTitle.trim() ? {} : { scale: 0.95 }}
-                  >
-                    {uploading ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-background border-t-transparent rounded-full animate-spin" />
-                        Uploading...
-                      </>
-                    ) : (
-                      <>
-                        <Upload className="w-4 h-4" />
-                        Upload Assignment
-                      </>
-                    )}
-                  </motion.button>
-                  <button
-                    onClick={cancelUpload}
-                    disabled={uploading}
-                    className="px-6 py-3 border border-border text-foreground rounded-lg hover:bg-muted transition-all disabled:opacity-50"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
 
       {/* Assignments List */}
       <section className="py-16">
@@ -338,23 +165,29 @@ const CapstonePage = () => {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin w-8 h-8 border-2 border-neon-blue border-t-transparent rounded-full mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Loading assignments...</p>
+              <p className="text-muted-foreground">Loading assignments from Google Drive...</p>
             </div>
-          ) : assignments.length === 0 ? (
+          ) : error ? (
             <div className="text-center py-16 bg-card border border-border rounded-xl">
-              <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">No Assignments Yet</h3>
-              <p className="text-muted-foreground mb-6">
-                Upload your first capstone assignment to get started.
-              </p>
+              <FileText className="w-16 h-16 text-red-500 mx-auto mb-4 opacity-50" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">Error Loading Assignments</h3>
+              <p className="text-muted-foreground mb-6">{error}</p>
               <motion.button
-                onClick={() => setShowUpload(true)}
+                onClick={loadAssignments}
                 className="px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background rounded-lg hover:shadow-lg transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Upload First Assignment
+                Try Again
               </motion.button>
+            </div>
+          ) : assignments.length === 0 ? (
+            <div className="text-center py-16 bg-card border border-border rounded-xl">
+              <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">No Assignments Found</h3>
+              <p className="text-muted-foreground">
+                No files found in the configured Google Drive folder.
+              </p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -370,25 +203,26 @@ const CapstonePage = () => {
                     <div className="bg-card border border-border rounded-xl p-6 hover:border-neon-blue/50 transition-all duration-300 h-full cursor-pointer">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-foreground group-hover:text-neon-blue transition-colors mb-2">
-                            {assignment.name}
-                          </h3>
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">{getFileIcon(assignment.mimeType)}</span>
+                            <h3 className="text-lg font-semibold text-foreground group-hover:text-neon-blue transition-colors">
+                              {assignment.name}
+                            </h3>
+                          </div>
                           
                           <div className="flex items-center gap-2 mb-3">
                             <Calendar className="w-4 h-4 text-muted-foreground" />
                             <span className="text-sm text-muted-foreground">
-                              {formatDate(assignment.uploadedAt)}
+                              {formatDate(assignment.modifiedTime)}
                             </span>
                           </div>
 
-                          {assignment.category && (
-                            <div className="flex items-center gap-2 mb-3">
-                              <Folder className="w-4 h-4 text-muted-foreground" />
-                              <span className={`px-2 py-1 rounded-full text-xs ${getCategoryColor(assignment.category)}`}>
-                                {assignment.category}
-                              </span>
-                            </div>
-                          )}
+                          <div className="flex items-center gap-2 mb-3">
+                            <Folder className="w-4 h-4 text-muted-foreground" />
+                            <span className={`px-2 py-1 rounded-full text-xs ${getCategoryColor(getCategoryFromMimeType(assignment.mimeType))}`}>
+                              {getCategoryFromMimeType(assignment.mimeType)}
+                            </span>
+                          </div>
                         </div>
                         
                         <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-neon-blue transition-colors" />
@@ -422,7 +256,7 @@ const CapstonePage = () => {
       <footer className="py-8 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-muted-foreground">
-            Cybersecurity Analytics Capstone Project • {" "}
+            Cybersecurity Analytics Capstone Project • Powered by Google Drive • {" "}
             <Link href="/" className="text-neon-blue hover:text-neon-purple transition-colors">
               Return to Main Portfolio
             </Link>

@@ -29,7 +29,7 @@ const Hero = () => {
             className="mb-8"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-green bg-clip-text text-transparent">
+              <span className="text-foreground bg-gradient-to-r from-neon-blue via-neon-purple to-neon-green bg-clip-text supports-[background-clip:text]:text-transparent">
                 Brantley Price
               </span>
             </h1>

@@ -1,49 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, FileText, Calendar, Folder, ExternalLink } from "lucide-react";
+import { ArrowLeft, FileText, Calendar, Folder, ExternalLink, CheckCircle, Clock } from "lucide-react";
 import Link from "next/link";
-
-interface GoogleDriveFile {
-  id: string;
-  name: string;
-  mimeType: string;
-  size?: string;
-  modifiedTime: string;
-  webViewLink: string;
-  webContentLink?: string;
-  description?: string;
-}
+import { assignments, Assignment } from "@/data/assignments";
 
 const CapstonePage = () => {
-  const [assignments, setAssignments] = useState<GoogleDriveFile[]>([]);
+  const [assignmentList, setAssignmentList] = useState<Assignment[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    loadAssignments();
-  }, []);
-
-  const loadAssignments = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await fetch('/api/drive/files');
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch assignments');
-      }
-      
-      const files = await response.json();
-      setAssignments(files);
-    } catch (error) {
-      console.error('Error loading assignments:', error);
-      setError('Failed to load assignments. Please check your Google Drive configuration.');
-    } finally {
+    // Use static assignment data only - no external API calls
+    const timer = setTimeout(() => {
+      setAssignmentList(assignments);
       setLoading(false);
-    }
-  };
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const formatDate = (dateString: string): string => {
     return new Intl.DateTimeFormat('en-US', {
@@ -53,35 +28,33 @@ const CapstonePage = () => {
     }).format(new Date(dateString));
   };
 
-  const getFileIcon = (mimeType: string) => {
-    if (mimeType.includes('document')) return '📄';
-    if (mimeType.includes('spreadsheet')) return '📊';
-    if (mimeType.includes('presentation')) return '📽️';
-    if (mimeType.includes('pdf')) return '🗎';
-    if (mimeType.includes('image')) return '🖼️';
+  const getFileIcon = (type: string) => {
+    if (type === 'PDF') return '🗎';
     return '📎';
-  };
-
-  const getCategoryFromMimeType = (mimeType: string) => {
-    if (mimeType.includes('document')) return 'Document';
-    if (mimeType.includes('spreadsheet')) return 'Spreadsheet';
-    if (mimeType.includes('presentation')) return 'Presentation';
-    if (mimeType.includes('pdf')) return 'PDF';
-    if (mimeType.includes('image')) return 'Image';
-    return 'File';
   };
 
   const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
-      'Document': 'bg-blue-500/10 text-blue-500',
-      'Spreadsheet': 'bg-green-500/10 text-green-500',
-      'Presentation': 'bg-purple-500/10 text-purple-500',
-      'PDF': 'bg-red-500/10 text-red-500',
-      'Image': 'bg-pink-500/10 text-pink-500',
-      'File': 'bg-gray-500/10 text-gray-500'
+      'Framework Analysis': 'bg-blue-500/10 text-blue-500',
+      'Risk Assessment': 'bg-red-500/10 text-red-500',
+      'Threat Intelligence': 'bg-purple-500/10 text-purple-500',
+      'Incident Response': 'bg-orange-500/10 text-orange-500',
+      'Data Analytics': 'bg-green-500/10 text-green-500',
+      'Compliance': 'bg-indigo-500/10 text-indigo-500',
+      'Network Security': 'bg-cyan-500/10 text-cyan-500',
+      'Training': 'bg-yellow-500/10 text-yellow-500',
+      'Cloud Security': 'bg-teal-500/10 text-teal-500',
+      'Penetration Testing': 'bg-rose-500/10 text-rose-500',
+      'Digital Forensics': 'bg-violet-500/10 text-violet-500',
+      'SOC Operations': 'bg-emerald-500/10 text-emerald-500',
+      'Business Continuity': 'bg-amber-500/10 text-amber-500',
+      'Final Project': 'bg-gradient-to-r from-neon-blue to-neon-purple text-background'
     };
     return colors[category] || 'bg-gray-500/10 text-gray-500';
   };
+
+  const completedCount = assignmentList.filter(a => a.completed).length;
+  const totalCount = assignmentList.length;
 
   return (
     <main className="min-h-screen bg-background">
@@ -103,7 +76,9 @@ const CapstonePage = () => {
               Capstone Project Hub
             </h1>
             
-            <div className="w-32" /> {/* Spacer for balance */}
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>{completedCount}/{totalCount} Complete</span>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -132,11 +107,15 @@ const CapstonePage = () => {
             <div className="flex justify-center items-center gap-6 text-muted-foreground">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-neon-blue" />
-                <span>{assignments.length} Assignment{assignments.length !== 1 ? 's' : ''}</span>
+                <span>{totalCount} Assignment{totalCount !== 1 ? 's' : ''}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Folder className="w-5 h-5 text-neon-purple" />
-                <span>Google Drive Integration</span>
+                <CheckCircle className="w-5 h-5 text-neon-green" />
+                <span>{completedCount} Completed</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5 text-neon-purple" />
+                <span>{totalCount - completedCount} In Progress</span>
               </div>
             </div>
           </motion.div>
@@ -165,33 +144,11 @@ const CapstonePage = () => {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin w-8 h-8 border-2 border-neon-blue border-t-transparent rounded-full mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Loading assignments from Google Drive...</p>
-            </div>
-          ) : error ? (
-            <div className="text-center py-16 bg-card border border-border rounded-xl">
-              <FileText className="w-16 h-16 text-red-500 mx-auto mb-4 opacity-50" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">Error Loading Assignments</h3>
-              <p className="text-muted-foreground mb-6">{error}</p>
-              <motion.button
-                onClick={loadAssignments}
-                className="px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background rounded-lg hover:shadow-lg transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Try Again
-              </motion.button>
-            </div>
-          ) : assignments.length === 0 ? (
-            <div className="text-center py-16 bg-card border border-border rounded-xl">
-              <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">No Assignments Found</h3>
-              <p className="text-muted-foreground">
-                No files found in the configured Google Drive folder.
-              </p>
+              <p className="text-muted-foreground">Loading assignments...</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {assignments.map((assignment, index) => (
+              {assignmentList.map((assignment, index) => (
                 <motion.div
                   key={assignment.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -200,11 +157,22 @@ const CapstonePage = () => {
                   className="group"
                 >
                   <Link href={`/capstone/${assignment.id}`}>
-                    <div className="bg-card border border-border rounded-xl p-6 hover:border-neon-blue/50 transition-all duration-300 h-full cursor-pointer">
-                      <div className="flex items-start justify-between mb-4">
+                    <div className={`bg-card border border-border rounded-xl p-6 hover:border-neon-blue/50 transition-all duration-300 h-full cursor-pointer relative ${
+                      !assignment.completed ? 'opacity-60' : ''
+                    }`}>
+                      {/* Completion Status Badge */}
+                      <div className="absolute top-4 right-4">
+                        {assignment.completed ? (
+                          <CheckCircle className="w-5 h-5 text-neon-green" />
+                        ) : (
+                          <Clock className="w-5 h-5 text-neon-purple" />
+                        )}
+                      </div>
+
+                      <div className="flex items-start justify-between mb-4 pr-8">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">{getFileIcon(assignment.mimeType)}</span>
+                            <span className="text-2xl">{getFileIcon(assignment.type)}</span>
                             <h3 className="text-lg font-semibold text-foreground group-hover:text-neon-blue transition-colors">
                               {assignment.name}
                             </h3>
@@ -219,28 +187,26 @@ const CapstonePage = () => {
 
                           <div className="flex items-center gap-2 mb-3">
                             <Folder className="w-4 h-4 text-muted-foreground" />
-                            <span className={`px-2 py-1 rounded-full text-xs ${getCategoryColor(getCategoryFromMimeType(assignment.mimeType))}`}>
-                              {getCategoryFromMimeType(assignment.mimeType)}
+                            <span className={`px-2 py-1 rounded-full text-xs ${getCategoryColor(assignment.category)}`}>
+                              {assignment.category}
                             </span>
                           </div>
                         </div>
-                        
-                        <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-neon-blue transition-colors" />
                       </div>
 
-                      {assignment.description && (
-                        <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
-                          {assignment.description}
-                        </p>
-                      )}
+                      <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                        {assignment.description}
+                      </p>
 
                       <div className="flex items-center justify-between pt-4 border-t border-border">
                         <span className="text-xs text-muted-foreground">
-                          Click to view assignment
+                          {assignment.completed ? 'Click to view assignment' : 'Coming soon...'}
                         </span>
                         <div className="flex items-center gap-1 text-neon-blue">
-                          <span className="text-xs">View Details</span>
-                          <ExternalLink className="w-3 h-3" />
+                          <span className="text-xs">
+                            {assignment.completed ? 'View Details' : 'In Progress'}
+                          </span>
+                          {assignment.completed && <ExternalLink className="w-3 h-3" />}
                         </div>
                       </div>
                     </div>
@@ -256,7 +222,7 @@ const CapstonePage = () => {
       <footer className="py-8 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-muted-foreground">
-            Cybersecurity Analytics Capstone Project • Powered by Google Drive • {" "}
+            Cybersecurity Analytics Capstone Project • Static Portfolio System • {" "}
             <Link href="/" className="text-neon-blue hover:text-neon-purple transition-colors">
               Return to Main Portfolio
             </Link>

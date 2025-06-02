@@ -1,0 +1,8 @@
+# This is a placeholder for PDF files
+# 
+# To add your actual assignments:
+# 1. Replace this file with assignment-1.pdf, assignment-2.pdf, etc.
+# 2. Update the corresponding entry in src/data/assignments.ts
+# 3. Set completed: true for that assignment
+# 
+# The PDF will be displayed in an iframe viewer on the assignment page. 

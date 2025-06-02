@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Calendar, Folder, FileText, AlertCircle, Download, CheckCircle, Clock } from "lucide-react";
+import { ArrowLeft, ExternalLink, Calendar, Folder, FileText, AlertCircle, Download } from "lucide-react";
 import Link from "next/link";
 import { getAssignmentById, Assignment } from "@/data/assignments";
 import { Document, Page, pdfjs } from 'react-pdf';

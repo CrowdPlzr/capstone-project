@@ -93,14 +93,14 @@ const CapstonePage = () => {
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
-                Cybersecurity Analytics
+                Cybersecurity Analytics and <Operations></Operations>
               </span>
               <br />
               <span className="text-foreground">Capstone Portfolio</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
               Welcome to my capstone project collection. Each assignment demonstrates different aspects 
-              of cybersecurity analytics, threat intelligence, and operational frameworks. Click on any 
+              of cybersecurity analytics, operations, threat intelligence, and the application of operations frameworks. Click on any 
               assignment below to explore the detailed work and findings.
             </p>
 

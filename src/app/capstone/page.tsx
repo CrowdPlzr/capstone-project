@@ -93,7 +93,7 @@ const CapstonePage = () => {
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
-                Cybersecurity Analytics and <Operations></Operations>
+                Cybersecurity Analytics and Operations
               </span>
               <br />
               <span className="text-foreground">Capstone Portfolio</span>

@@ -13,13 +13,13 @@ export interface Assignment {
 export const assignments: Assignment[] = [
   {
     id: "assignment-1",
-    name: "Security Framework Analysis",
-    description: "Comprehensive analysis of NIST Cybersecurity Framework implementation and its application in organizational security strategy.",
-    category: "Framework Analysis",
-    modifiedTime: "2024-11-15T10:30:00Z",
+    name: "Cyber Range Evaluation Report",
+    description: "This report evaluates three commercial cyber range platforms: RangeForce, CYBER RANGES, and Cogent Cyber Range, to help a mid-sized company choose a cybersecurity training solution.  The evaluation uses a custom rubric based on factors like real-world simulation, scalability, user experience, content quality, and cost-efficiency.",
+    category: "Comparative Analysis",
+    modifiedTime: "2025-06-01",
     pdfPath: "/assignments/assignment-1.pdf",
     type: "PDF",
-    size: "2.4 MB",
+    size: "1.2 MB",
     completed: true
   },
   {

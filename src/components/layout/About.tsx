@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Database, Brain, Code, Award, Users } from "lucide-react";
+import { Shield, Database, Brain, Award, Users } from "lucide-react";
 
 const About = () => {
   const skills = [

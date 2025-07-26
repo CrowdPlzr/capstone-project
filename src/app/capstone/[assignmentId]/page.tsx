@@ -5,11 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Calendar, Folder, FileText, AlertCircle, Download } from "lucide-react";
 import Link from "next/link";
 import { getAssignmentById, Assignment } from "@/data/assignments";
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+// ...existing code...
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 interface AssignmentPageProps {
   params: Promise<{
@@ -21,12 +18,8 @@ const AssignmentPage = ({ params }: AssignmentPageProps) => {
   const [assignment, setAssignment] = useState<Assignment | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [numPages, setNumPages] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [pdfLoading, setPdfLoading] = useState<boolean>(true);
-  const [pdfError, setPdfError] = useState<string | null>(null);
-  const [pageWidth, setPageWidth] = useState<number>(800);
-  const [isClient, setIsClient] = useState(false);
+  // ...existing code...
+  // ...existing code...
 
   const loadAssignment = useCallback(async (id: string) => {
     try {
@@ -66,17 +59,7 @@ const AssignmentPage = ({ params }: AssignmentPageProps) => {
     getParams();
   }, [params, loadAssignment]);
 
-  useEffect(() => {
-    setIsClient(true);
-    // Set initial page width and handle window resize
-    const updatePageWidth = () => {
-      setPageWidth(Math.min(800, window.innerWidth - 100));
-    };
-    
-    updatePageWidth();
-    window.addEventListener('resize', updatePageWidth);
-    return () => window.removeEventListener('resize', updatePageWidth);
-  }, []);
+  // ...existing code...
 
   const formatDate = (dateString: string): string => {
     return new Intl.DateTimeFormat('en-US', {
@@ -123,25 +106,7 @@ const AssignmentPage = ({ params }: AssignmentPageProps) => {
     return colors[category] || 'bg-gray-500/10 text-gray-500 border-gray-500/20';
   };
 
-  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-    setNumPages(numPages);
-    setPdfLoading(false);
-    setPdfError(null);
-  };
-
-  const onDocumentLoadError = (error: Error) => {
-    console.error('Error loading PDF:', error);
-    setPdfError('Failed to load PDF');
-    setPdfLoading(false);
-  };
-
-  const goToPrevPage = () => {
-    setPageNumber(prev => Math.max(prev - 1, 1));
-  };
-
-  const goToNextPage = () => {
-    setPageNumber(prev => Math.min(prev + 1, numPages));
-  };
+  // ...existing code...
 
   if (loading) {
     return (

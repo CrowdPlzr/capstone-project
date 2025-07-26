@@ -19,11 +19,6 @@ const About = () => {
       category: "Machine Learning",
       icon: Brain,
       items: ["Anomaly Detection", "Predictive Modeling", "Classification", "Feature Engineering", "Model Validation"]
-    },
-    {
-      category: "Development",
-      icon: Code,
-      items: ["Python", "JavaScript", "React", "Next.js", "API Development"]
     }
   ];
 

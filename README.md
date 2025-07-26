@@ -13,7 +13,7 @@
 
 *Deploy your own copy in under 2 minutes:*
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=YOUR_GITHUB_REPO_URL)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/brantley-price/capstone-project)
 
 ## ✨ Features
 
@@ -53,7 +53,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/capstone-project.git
+git clone https://github.com/brantley-price/capstone-project.git
 cd capstone-project
 
 # Install dependencies
@@ -130,9 +130,9 @@ The portfolio includes:
 **Brantley Price**  
 Cybersecurity Analytics & Operations Professional
 
-- 📧 Email: your.email@example.com
-- 💼 LinkedIn: [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
-- 🐙 GitHub: [github.com/your-username](https://github.com/your-username)
+- 📧 Email: brantley.price@example.com
+- 💼 LinkedIn: [linkedin.com/in/brantley-price](https://linkedin.com/in/brantley-price)
+- 🐙 GitHub: [github.com/brantley-price](https://github.com/brantley-price)
 
 ---
 

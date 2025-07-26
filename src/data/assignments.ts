@@ -24,80 +24,80 @@ export const assignments: Assignment[] = [
   },
   {
     id: "assignment-2", 
-    name: "Risk Assessment Methodology",
-    description: "Detailed risk assessment procedures and methodologies for identifying and evaluating cybersecurity threats.",
-    category: "Risk Assessment",
-    modifiedTime: "2024-11-20T14:15:00Z",
+    name: "Network Reconnaissance & Vulnerability Assessment",
+    description: "Hands-on exercises focusing on network reconnaissance techniques such as host discovery, port scanning, and service version enumeration.",
+    category: "Cybersecurity Operations/Network Security",
+    modifiedTime: "2025-06-15",
     pdfPath: "/assignments/assignment-2.pdf",
     type: "PDF",
     size: "3.1 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-3",
-    name: "Threat Intelligence Analysis",
-    description: "Advanced threat intelligence gathering and analysis techniques for proactive security measures.",
-    category: "Threat Intelligence",
-    modifiedTime: "2024-11-25T09:45:00Z",
+    name: "SCADA Security: Firewall Rules and Infrastructure Attack",
+    description: "Defensive and Offensive approaches to SCADA system security.",
+    category: "Industrial Control Systems (ICS) Security/Cybersecurity Operations",
+    modifiedTime: "2025-06-22",
     pdfPath: "/assignments/assignment-3.pdf",
     type: "PDF",
     size: "2.8 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-4",
-    name: "Incident Response Planning",
-    description: "Development of comprehensive incident response plans and procedures for cybersecurity events.",
-    category: "Incident Response",
-    modifiedTime: "2024-11-30T16:20:00Z",
+    name: "Web Application & OSINT Attack Techniques",
+    description: "Common attacks used by adversaries and OSINT techniques pertaining to reconnaissance and network footprinting.",
+    category: "Penetration Testing/Offensive Security",
+    modifiedTime: "2025-06-29",
     pdfPath: "/assignments/assignment-4.pdf",
     type: "PDF",
     size: "2.2 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-5",
-    name: "Data Analytics for Security",
-    description: "Application of data analytics and machine learning techniques in cybersecurity operations.",
-    category: "Data Analytics",
-    modifiedTime: "2024-12-05T11:10:00Z",
+    name: "Advanced Adversarial Tactics: Reconnaissance, Resource Development, and Pivoting",
+    description: "Web scraping using cewl, directory enumeration using gobuster, and website cloning/credential harvesting using the Social Engineering Toolkit (SET). **Note, this assignment required a fair amount of troubleshooting due to issues with Infosec's lab environment.**",
+    category: "Offensive Security/Red Teaming",
+    modifiedTime: "2025-07-05",
     pdfPath: "/assignments/assignment-5.pdf",
     type: "PDF",
     size: "3.5 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-6",
-    name: "Compliance and Governance",
-    description: "Cybersecurity compliance frameworks and governance structures for organizational security.",
-    category: "Compliance",
-    modifiedTime: "2024-12-10T13:30:00Z",
+    name: "Privilege Escalation via XSS & Defensive Evasion Techniques",
+    description: "Privilege escalation using cross-site scripting vulnerabilities within a web app and adversarial defensive evasion techniques via a Linux host.",
+    category: "Offensive Security/Red Teaming",
+    modifiedTime: "2025-07-13",
     pdfPath: "/assignments/assignment-6.pdf",
     type: "PDF",
     size: "2.9 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-7",
-    name: "Network Security Assessment",
-    description: "Comprehensive network security assessment methodologies and vulnerability analysis techniques.",
-    category: "Network Security",
-    modifiedTime: "2024-12-15T08:25:00Z",
+    name: "Web Vulnerabilities & Secure/Insecure Protocols",
+    description: "Web vulnerabilities such as XSS (reflected, stored, and DOM-based), SQL injections, directory traversal, and file inclusion. Telnet, SSH, and FTP protocols are also covered to understand their security implications.",
+    category: "Web App and Network Security",
+    modifiedTime: "2025-07-20",
     pdfPath: "/assignments/assignment-7.pdf",
     type: "PDF",
     size: "3.2 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-8",
-    name: "Security Awareness Training",
-    description: "Development and implementation of security awareness training programs for organizational staff.",
-    category: "Training",
-    modifiedTime: "2024-12-20T15:40:00Z",
+    name: "Network Security Diagnostics and Cryptography",
+    description: "Iptables is used to create firewall rules and interations with network protocols like ping, nmap, and curl to inspect network configurations. Exploration of the implementation of symmetric and asymmetric cryptographic algorithms such as DES, 3DES, RSA, and AES.",
+    category: "Network Security/Cryptography",
+    modifiedTime: "2025-07-27",
     pdfPath: "/assignments/assignment-8.pdf",
     type: "PDF",
     size: "2.1 MB",
-    completed: false
+    completed: true
   },
   {
     id: "assignment-9",

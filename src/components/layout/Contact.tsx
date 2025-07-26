@@ -2,8 +2,50 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Linkedin, Github, Award } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again later.");
+    }
+  };
   const contactInfo = [
     {
       icon: Mail,
@@ -20,7 +62,7 @@ const Contact = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Open To Work",
+      value: "Open To Work in Charlotte, NC",
       href: null
     }
   ];
@@ -83,7 +125,7 @@ const Contact = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-foreground mb-6">Send a Message</h3>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-2">
@@ -93,6 +135,8 @@ const Contact = () => {
                     type="text"
                     id="firstName"
                     name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent transition-colors text-foreground placeholder-muted-foreground"
                     placeholder="John"
                   />
@@ -105,6 +149,8 @@ const Contact = () => {
                     type="text"
                     id="lastName"
                     name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent transition-colors text-foreground placeholder-muted-foreground"
                     placeholder="Doe"
                   />
@@ -119,6 +165,8 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent transition-colors text-foreground placeholder-muted-foreground"
                   placeholder="john.doe@example.com"
                 />
@@ -132,6 +180,8 @@ const Contact = () => {
                   type="text"
                   id="subject"
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent transition-colors text-foreground placeholder-muted-foreground"
                   placeholder="Collaboration Opportunity"
                 />
@@ -145,6 +195,8 @@ const Contact = () => {
                   id="message"
                   name="message"
                   rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent transition-colors text-foreground placeholder-muted-foreground resize-none"
                   placeholder="I&apos;d like to discuss..."
                 ></textarea>

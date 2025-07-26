@@ -6,11 +6,10 @@ import { ArrowLeft, ExternalLink, Calendar, Folder, FileText, AlertCircle, Downl
 import Link from "next/link";
 import { getAssignmentById, Assignment } from "@/data/assignments";
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-// Set up PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 interface AssignmentPageProps {
   params: Promise<{
@@ -27,6 +26,7 @@ const AssignmentPage = ({ params }: AssignmentPageProps) => {
   const [pdfLoading, setPdfLoading] = useState<boolean>(true);
   const [pdfError, setPdfError] = useState<string | null>(null);
   const [pageWidth, setPageWidth] = useState<number>(800);
+  const [isClient, setIsClient] = useState(false);
 
   const loadAssignment = useCallback(async (id: string) => {
     try {
@@ -67,13 +67,12 @@ const AssignmentPage = ({ params }: AssignmentPageProps) => {
   }, [params, loadAssignment]);
 
   useEffect(() => {
+    setIsClient(true);
     // Set initial page width and handle window resize
     const updatePageWidth = () => {
-      if (typeof window !== 'undefined') {
-        setPageWidth(Math.min(800, window.innerWidth - 100));
-      }
+      setPageWidth(Math.min(800, window.innerWidth - 100));
     };
-
+    
     updatePageWidth();
     window.addEventListener('resize', updatePageWidth);
     return () => window.removeEventListener('resize', updatePageWidth);
@@ -281,75 +280,12 @@ const AssignmentPage = ({ params }: AssignmentPageProps) => {
             </div>
             
             <div className="relative">
-              {pdfLoading && (
-                <div className="flex items-center justify-center h-[600px]">
-                  <div className="animate-spin w-8 h-8 border-2 border-neon-blue border-t-transparent rounded-full"></div>
-                  <span className="ml-2 text-muted-foreground">Loading PDF...</span>
-                </div>
-              )}
-              
-              {pdfError && (
-                <div className="flex items-center justify-center h-[400px] text-center">
-                  <div>
-                    <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-                    <p className="text-muted-foreground mb-4">{pdfError}</p>
-                    <a 
-                      href={assignment.pdfPath} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-neon-blue hover:underline"
-                    >
-                      Open PDF in new tab
-                    </a>
-                  </div>
-                </div>
-              )}
-
-              {!pdfLoading && !pdfError && (
-                <div className="space-y-4">
-                  <Document
-                    file={assignment.pdfPath}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                    onLoadError={onDocumentLoadError}
-                    loading={null}
-                    error={null}
-                  >
-                    <div className="flex justify-center">
-                      <Page
-                        pageNumber={pageNumber}
-                        width={pageWidth}
-                        renderAnnotationLayer={false}
-                        renderTextLayer={false}
-                      />
-                    </div>
-                  </Document>
-
-                  {/* PDF Navigation Controls */}
-                  {numPages > 1 && (
-                    <div className="flex items-center justify-center gap-4 py-4">
-                      <button
-                        onClick={goToPrevPage}
-                        disabled={pageNumber <= 1}
-                        className="px-4 py-2 bg-card border border-border rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:border-neon-blue/50 transition-all"
-                      >
-                        Previous
-                      </button>
-                      
-                      <span className="text-muted-foreground">
-                        Page {pageNumber} of {numPages}
-                      </span>
-                      
-                      <button
-                        onClick={goToNextPage}
-                        disabled={pageNumber >= numPages}
-                        className="px-4 py-2 bg-card border border-border rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:border-neon-blue/50 transition-all"
-                      >
-                        Next
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
+              <iframe
+                src={assignment.pdfPath}
+                width="100%"
+                height="800px"
+                title={assignment.name}
+              ></iframe>
             </div>
           </div>
 

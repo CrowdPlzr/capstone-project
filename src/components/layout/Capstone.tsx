@@ -33,8 +33,8 @@ const Capstone = () => {
   ];
 
   const technologies = [
-    "Python", "Splunk", "NIST Framework", "Machine Learning", "Statistical Analysis", 
-    "Threat Intelligence", "Data Visualization", "Risk Assessment", "Incident Response"
+    "Python", "Linux", "MITRE ATT&CK Framework", "OSINT", "Offensive/Defensive Cybersecurity", 
+    "Threat Intelligence", "Kali Red Teaming Tools", "Risk Assessment", "Incident Response"
   ];
 
   return (
@@ -132,48 +132,6 @@ const Capstone = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Interactive Data Visualization Placeholder */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 p-8 bg-card border border-border rounded-xl"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-            Interactive Data Visualizations
-          </h3>
-          <div className="bg-muted/50 border-2 border-dashed border-border rounded-lg p-12 text-center">
-            <BarChart3 className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground">
-              Interactive charts and visualizations will be integrated here to showcase 
-              data analysis results, threat patterns, and security metrics.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-4">Interested in Learning More?</h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            I&apos;d be happy to discuss the technical details, methodologies, and insights 
-            gained from this cybersecurity analytics project.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-background font-semibold rounded-lg glow-effect transition-all duration-300"
-          >
-            Contact Me
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );

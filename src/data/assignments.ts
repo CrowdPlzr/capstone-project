@@ -112,7 +112,7 @@ export const assignments: Assignment[] = [
   },
   {
     id: "assignment-10",
-    name: "Indicators of Compromise,
+    name: "Indicators of Compromise",
     description: "Execution of the necessary steps to identify, contain, and remove a threat from a machine.",
     category: "Incident Response",
     modifiedTime: "2025-08-08",

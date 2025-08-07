@@ -39,7 +39,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl md:text-2xl text-muted-foreground font-medium"
             >
-              Cybersecurity Analytics & Operations
+              Cybersecurity Analytics & Operations Capstone Project
             </motion.div>
           </motion.div>
 
@@ -52,7 +52,7 @@ const Hero = () => {
           >
             Transforming complex cybersecurity challenges into actionable insights through 
             advanced analytics, machine learning, and strategic operations. Specializing in 
-            <span className="text-neon-blue font-semibold"> NIST frameworks</span>, 
+            <span className="text-neon-blue font-semibold"> cybersecurity frameworks</span>, 
             <span className="text-neon-purple font-semibold"> threat intelligence</span>, and 
             <span className="text-neon-green font-semibold"> data-driven security solutions</span>.
           </motion.p>

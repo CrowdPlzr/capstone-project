@@ -69,7 +69,7 @@ const About = () => {
             <p className="text-muted-foreground leading-relaxed">
               With a strong foundation in cybersecurity analytics and operations, I specialize in developing 
               comprehensive security strategies that leverage advanced data analysis techniques. My experience 
-              spans across threat intelligence, risk assessment, and the implementation of NIST frameworks.
+              spans across threat intelligence, risk assessment, and the implementation of various cybersecurity frameworks.
             </p>
             
             {/* Achievements */}

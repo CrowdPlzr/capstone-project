@@ -19,7 +19,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-06-01",
     pdfPath: "/assignments/assignment-1.pdf",
     type: "PDF",
-    size: "1.2 MB",
+    size: "1.3 MB",
     completed: true
   },
   {
@@ -30,7 +30,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-06-15",
     pdfPath: "/assignments/assignment-2.pdf",
     type: "PDF",
-    size: "3.1 MB",
+    size: "2.7 MB",
     completed: true
   },
   {
@@ -41,7 +41,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-06-22",
     pdfPath: "/assignments/assignment-3.pdf",
     type: "PDF",
-    size: "2.8 MB",
+    size: "2.7 MB",
     completed: true
   },
   {
@@ -52,7 +52,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-06-29",
     pdfPath: "/assignments/assignment-4.pdf",
     type: "PDF",
-    size: "2.2 MB",
+    size: "7 MB",
     completed: true
   },
   {
@@ -63,7 +63,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-07-05",
     pdfPath: "/assignments/assignment-5.pdf",
     type: "PDF",
-    size: "3.5 MB",
+    size: "2.2 MB",
     completed: true
   },
   {
@@ -74,7 +74,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-07-13",
     pdfPath: "/assignments/assignment-6.pdf",
     type: "PDF",
-    size: "2.9 MB",
+    size: "2.2 MB",
     completed: true
   },
   {
@@ -85,7 +85,7 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-07-20",
     pdfPath: "/assignments/assignment-7.pdf",
     type: "PDF",
-    size: "3.2 MB",
+    size: "2.4 MB",
     completed: true
   },
   {
@@ -96,30 +96,30 @@ export const assignments: Assignment[] = [
     modifiedTime: "2025-07-27",
     pdfPath: "/assignments/assignment-8.pdf",
     type: "PDF",
-    size: "2.1 MB",
+    size: "2.4 MB",
     completed: true
   },
   {
     id: "assignment-9",
-    name: "Cloud Security Architecture",
-    description: "Design and implementation of secure cloud architectures and best practices for cloud environments.",
-    category: "Cloud Security",
-    modifiedTime: "2024-12-25T12:15:00Z",
+    name: "Digital Evidence and Legal Issues",
+    description: "Overview of the legal and ethical landscape of which cybersecurity professionals must be aware.",
+    category: "Legal, Ethical, and Regulatory Compliance",
+    modifiedTime: "2025-08-03",
     pdfPath: "/assignments/assignment-9.pdf",
     type: "PDF",
-    size: "3.8 MB",
-    completed: false
+    size: "2.5 MB",
+    completed: true
   },
   {
     id: "assignment-10",
-    name: "Penetration Testing Methodology",
-    description: "Systematic penetration testing approaches and methodologies for security assessment.",
-    category: "Penetration Testing",
-    modifiedTime: "2024-12-30T10:50:00Z",
+    name: "Indicators of Compromise,
+    description: "Execution of the necessary steps to identify, contain, and remove a threat from a machine.",
+    category: "Incident Response",
+    modifiedTime: "2025-08-08",
     pdfPath: "/assignments/assignment-10.pdf",
     type: "PDF",
-    size: "4.1 MB",
-    completed: false
+    size: "2.4 MB",
+    completed: true
   },
   {
     id: "assignment-11",

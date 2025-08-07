@@ -68,9 +68,7 @@ const Capstone = () => {
         >
           <h3 className="text-2xl font-bold text-foreground mb-4">Project Overview</h3>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            This capstone project demonstrates the application of advanced analytics and machine learning 
-            techniques to cybersecurity challenges. The project encompasses threat detection, risk assessment, 
-            and the implementation of NIST cybersecurity frameworks to enhance organizational security posture.
+           A laboratory-based project that required the application of skills and knowledge from previous coursework to cybersecurity scenarios and problems found in the real world. The project combines analyses of cybersecurity issues with the critical thinking required to resolve them. Within this project, are a variety of issues spanning a wide range of cybersecurity vulnerabilities and scenarios. Each assignment requires a thorough analysis in order to apply the proper tools and techniques for a successful resolution.
           </p>
           
           {/* Technologies Used */}

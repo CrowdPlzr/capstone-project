@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Linkedin, Github, Award } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Linkedin, Award } from "lucide-react";
 import { useState } from "react";
 
 const Contact = () => {

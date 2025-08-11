@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Download, Mail, Linkedin, Award } from "lucide-react";
+import { ChevronDown, Mail, Linkedin, Award } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {

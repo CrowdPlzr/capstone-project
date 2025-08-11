@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Download, Mail, Github, Linkedin, Award } from "lucide-react";
+import { ChevronDown, Download, Mail, Linkedin, Award } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -73,15 +73,6 @@ const Hero = () => {
               View Capstone Project
               <ChevronDown className="w-4 h-4" />
             </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border border-border text-foreground font-semibold rounded-lg hover:bg-card transition-all duration-300 flex items-center gap-2"
-            >
-              <Download className="w-4 h-4" />
-              Download Resume
-            </motion.button>
           </motion.div>
 
           {/* Social Links */}
@@ -106,15 +97,6 @@ const Hero = () => {
               className="p-3 bg-card border border-border rounded-lg hover:border-neon-blue transition-all duration-300 group"
             >
               <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-neon-blue transition-colors" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1, y: -2 }}
-              href="https://github.com/brantley-price"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-card border border-border rounded-lg hover:border-neon-blue transition-all duration-300 group"
-            >
-              <Github className="w-5 h-5 text-muted-foreground group-hover:text-neon-blue transition-colors" />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.1, y: -2 }}

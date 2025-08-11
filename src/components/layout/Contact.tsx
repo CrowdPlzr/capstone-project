@@ -75,12 +75,6 @@ const Contact = () => {
       color: "hover:text-blue-400"
     },
     {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com/brantley-price",
-      color: "hover:text-gray-400"
-    },
-    {
       icon: Award,
       label: "Credly Certifications",
       href: "https://www.credly.com/users/brantley-price.56d860fc",
@@ -89,7 +83,7 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      href: "mailto:brantley@example.com",
+      href: "mailto:brantleyp@gmail.com",
       color: "hover:text-neon-blue"
     }
   ];
@@ -273,22 +267,6 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-
-            {/* Additional Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="p-6 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/20 rounded-xl"
-            >
-              <h4 className="text-lg font-semibold text-foreground mb-3">Let&apos;s Collaborate</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                I&apos;m always open to discussing new opportunities, cybersecurity challenges, 
-                and innovative projects. Whether you&apos;re looking for expertise in security analytics, 
-                data science, or strategic security implementations, I&apos;d love to connect.
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </div>

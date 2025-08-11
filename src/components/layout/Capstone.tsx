@@ -2,33 +2,33 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Target, Cog, BarChart3, Lightbulb, ExternalLink, Github } from "lucide-react";
+import { Target, Cog, BarChart3, Lightbulb, ExternalLink } from "lucide-react";
 
 const Capstone = () => {
   const sections = [
     {
       id: "problem",
-      title: "Problem Statement",
+      title: "Security Operations & Detection",
       icon: Target,
-      content: "Identifying and addressing critical cybersecurity vulnerabilities through advanced analytics and machine learning techniques to enhance organizational security posture."
+      content: "SIEM queries, incident response, threat hunting, malware analysis."
     },
     {
       id: "process",
-      title: "Methodology & Process",
+      title: "Security Engineer",
       icon: Cog,
-      content: "Implemented a comprehensive approach utilizing NIST frameworks, statistical analysis, and machine learning algorithms to analyze security data and identify threat patterns."
+      content: "Network hardening, SIEM/SOAR engineering, DevSecOps management, threat modeling, network segmentation."
     },
     {
       id: "results",
-      title: "Results & Impact",
+      title: "Governance, risk, compliance, and policy",
       icon: BarChart3,
-      content: "Achieved significant improvements in threat detection accuracy and response times, resulting in enhanced security operations and reduced risk exposure."
+      content: "Cybersecurity frameworks (NIST, ISO 27001, SOC 2, PCI), continuous monitoring, data mapping, privacy controls, regulatory compliance."
     },
     {
       id: "reflections",
-      title: "Key Insights",
+      title: "Data Forensics",
       icon: Lightbulb,
-      content: "Gained valuable insights into the intersection of data science and cybersecurity, highlighting the importance of data-driven decision making in security operations."
+      content: "Chain of custody, hashing and cryptography, encrypted algorithms, schema design, legal compliance."
     }
   ];
 
@@ -68,7 +68,7 @@ const Capstone = () => {
         >
           <h3 className="text-2xl font-bold text-foreground mb-4">Project Overview</h3>
           <p className="text-muted-foreground leading-relaxed mb-6">
-           A laboratory-based project that required the application of skills and knowledge from previous coursework to cybersecurity scenarios and problems found in the real world. The project combines analyses of cybersecurity issues with the critical thinking required to resolve them. Within this project, are a variety of issues spanning a wide range of cybersecurity vulnerabilities and scenarios. Each assignment requires a thorough analysis in order to apply the proper tools and techniques for a successful resolution.
+           A laboratory-based project that required the application of skills and knowledge from previous coursework to cybersecurity scenarios and problems found in the real world. The project combines analyses of cybersecurity issues with the critical thinking required to resolve them. Within this project, are a variety of issues spanning a wide range of cybersecurity vulnerabilities and scenarios. Each assignment requires a thorough analysis in order to apply the proper tools and techniques for a successful resolution. Below are four cybersecurity jobs and a few of their required skills.
           </p>
           
           {/* Technologies Used */}
@@ -98,14 +98,6 @@ const Capstone = () => {
                 Enter Capstone
               </motion.button>
             </Link>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-card transition-all duration-300 flex items-center gap-2"
-            >
-              <Github className="w-4 h-4" />
-              View Source Code
-            </motion.button>
           </div>
         </motion.div>
 

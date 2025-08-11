@@ -123,47 +123,36 @@ export const assignments: Assignment[] = [
   },
   {
     id: "assignment-11",
-    name: "Digital Forensics Analysis",
-    description: "Digital forensics techniques and tools for incident investigation and evidence collection.",
-    category: "Digital Forensics",
-    modifiedTime: "2025-01-05T14:35:00Z",
+    name: "Cybersecurity Senior Management and Information Security Governance (ISG)",
+    description: "A governance-focused reflection on senior leadership's role in cybersecurity .",
+    category: "Governance, Risk, and Compliance (GRC)",
+    modifiedTime: "2025-08-10",
     pdfPath: "/assignments/assignment-11.pdf",
     type: "PDF",
-    size: "3.7 MB",
-    completed: false
+    size: "1.1 MB",
+    completed: true
   },
   {
     id: "assignment-12",
-    name: "Security Operations Center",
-    description: "Design and operation of Security Operations Centers (SOC) for continuous security monitoring.",
-    category: "SOC Operations",
-    modifiedTime: "2025-01-10T09:20:00Z",
+    name: "Digital Forensics Techniques",
+    description: "Exploring forensics techniques using Wireshark and validating evidence integriy with hashing algorithms.",
+    category: "Digital Forensics and Incident Response (DFIR)",
+    modifiedTime: "2025-08-12",
     pdfPath: "/assignments/assignment-12.pdf",
     type: "PDF",
-    size: "2.6 MB",
-    completed: false
+    size: "2.5 MB",
+    completed: true
   },
   {
     id: "assignment-13",
-    name: "Business Continuity Planning",
-    description: "Development of business continuity and disaster recovery plans for cybersecurity incidents.",
-    category: "Business Continuity",
-    modifiedTime: "2025-01-15T16:45:00Z",
+    name: "Overview and Reflection",
+    description: "A brief overview of the capstone experience and a personal reflection from the student.",
+    category: "Capstone Overview",
+    modifiedTime: "2025-08-13",
     pdfPath: "/assignments/assignment-13.pdf",
     type: "PDF",
-    size: "3.3 MB",
-    completed: false
-  },
-  {
-    id: "assignment-14",
-    name: "Capstone Project Final Report",
-    description: "Comprehensive final report consolidating all cybersecurity analytics research and findings.",
-    category: "Final Project",
-    modifiedTime: "2025-01-20T11:00:00Z",
-    pdfPath: "/assignments/assignment-14.pdf",
-    type: "PDF",
-    size: "5.2 MB",
-    completed: false
+    size: "0.8 MB",
+    completed: true
   }
 ];
 
